@@ -26,6 +26,7 @@ def main():
     while running:
         ev = pygame.event.get()
         pos = pygame.mouse.get_pos()
+        print(pos)
 
 
         screen.fill((0,0,0))
@@ -45,17 +46,34 @@ def main():
                 if menuStateI == 1:
                     e14.play()
                     login.startGameVar = 1
-                    print("Click")
 
                 if menuStateI == 2:
                     e14.play()  
                     print("newAccount")
-
+                
                 if menuStateI == 3:
                     e14.play()  
-                    print("exit")
+                    login.startGameVar = 0
+                
+                if menuStateI == 4:
+                    e14.play()  
+                    print("Abaddon Serv")
+                    # login.startGameVar = 0
+                
+                if menuStateI == 5:
+                    e14.play()  
+                    print("Apocalypse Serv")
+                    # login.startGameVar = 0
+                
+                
+                
+                if menuStateI == 99:
+                    e14.play()
                     login.startGameVar = 99
                     running = False
+                
+                
+
 
             if event.type == pygame.QUIT:
                 login.startGameVar = 99

@@ -55,13 +55,32 @@ class StartGame():
 
             if exit.collidepoint(pygame.mouse.get_pos()):
                 self.screen.blit(self.image1,(386, 256),(468, 484, 162, 20))
-                return 3
+                return 99 # Exit
 
         if self.startGameVar == 1:                              # Login
             data, mode, size = self.prepareSprite(logIn)
             image1 = pygame.image.fromstring(data, size, mode)
             rect = image1.get_rect()
-            self.screen.blit(image1, rect)      
+            self.screen.blit(image1, rect)
+
+
+            
+            self.screen.blit(image1, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][1][0:4])
+            
+            if pygame.Rect((260, 280), self.totalSprites["LoginDialog.pak"]["frames"][0][4][2:4]).collidepoint(pygame.mouse.get_pos()):
+            # Cancel
+                self.screen.blit(image1, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
+                return 3
+            # Abadon Server
+            if pygame.Rect((139, 175), self.totalSprites["LoginDialog.pak"]["frames"][0][5][2:4]).collidepoint(pygame.mouse.get_pos()):
+                self.screen.blit(image1, (139,175), self.totalSprites["LoginDialog.pak"]["frames"][0][5][0:4])
+                return 4
+            # Apocalipsis Server
+            if pygame.Rect((133, 205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][2:4]).collidepoint(pygame.mouse.get_pos()):
+                self.screen.blit(image1, (133,205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][0:4])
+                return 5
+            
+            #self.screen.blit(image1, self.totalSprites["LoginDialog.pak"]["frames"][0][0])
              
 
         if self.startGameVar == 99:                             # Exit
@@ -69,8 +88,8 @@ class StartGame():
             image1 = pygame.image.fromstring(data, size, mode)
             rect = image1.get_rect()
             self.screen.blit(image1, rect)
-            
     
+        
     
     def Login(self):
         logIn = self.totalSprites["LoginDialog.pak"]["sprites"][0]
