@@ -1,0 +1,42 @@
+UPDATE_SCREEN_ON_SELECT_CHARACTER1 = "Log in with the selected character."
+UPDATE_SCREEN_ON_SELECT_CHARACTER2 = "You can log in by clicking the button"
+UPDATE_SCREEN_ON_SELECT_CHARACTER3 = "or pressing the enter after selecting"
+UPDATE_SCREEN_ON_SELECT_CHARACTER4 = "character."
+UPDATE_SCREEN_ON_SELECT_CHARACTER5 = "Make a new character."
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER6 = "Delete the selected character. Deleted"
+UPDATE_SCREEN_ON_SELECT_CHARACTER7 = "characters cannot be recovered. You"
+UPDATE_SCREEN_ON_SELECT_CHARACTER8 = "also cannot delete a character above"
+UPDATE_SCREEN_ON_SELECT_CHARACTER9 = "level 50. If you want to delete a "
+UPDATE_SCREEN_ON_SELECT_CHARACTER10 = "character above level 50, please send"
+UPDATE_SCREEN_ON_SELECT_CHARACTER11 = "an e-mail to the game master."
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER12 = "Change the account password."
+UPDATE_SCREEN_ON_SELECT_CHARACTER13 = "Back to the main menu."
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER14 = "There is no character in this account."
+UPDATE_SCREEN_ON_SELECT_CHARACTER15 = "Each account can have 4 character at"
+UPDATE_SCREEN_ON_SELECT_CHARACTER16 = "most. You can make a new character by"
+UPDATE_SCREEN_ON_SELECT_CHARACTER17 = "clicking the NEW CHARACTER button or"
+UPDATE_SCREEN_ON_SELECT_CHARACTER18 = "the left blank slot."
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER19 = "You can start game by clicking START"
+UPDATE_SCREEN_ON_SELECT_CHARACTER20 = "button, and make a new character."
+UPDATE_SCREEN_ON_SELECT_CHARACTER21 = "If you want to delete a character,"
+UPDATE_SCREEN_ON_SELECT_CHARACTER22 = "press the DELETE CHARACTER button"
+UPDATE_SCREEN_ON_SELECT_CHARACTER23 = "after you select a character which"
+UPDATE_SCREEN_ON_SELECT_CHARACTER24 = "you want to delete."
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER25 = "You can start game by clicking START"
+UPDATE_SCREEN_ON_SELECT_CHARACTER26 = "button. If you want to delete a chara-"
+UPDATE_SCREEN_ON_SELECT_CHARACTER27 = "cter, press the DELETE CHARACTER button"
+UPDATE_SCREEN_ON_SELECT_CHARACTER28 = "after you select a character."
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER31 = "   "
+UPDATE_SCREEN_ON_SELECT_CHARACTER34 = "   "
+UPDATE_SCREEN_ON_SELECT_CHARACTER36 = "Helbreath Kanazawa"
+
+UPDATE_SCREEN_ON_SELECT_CHARACTER37 = "Your Account Is Validated!"
+UPDATE_SCREEN_ON_SELECT_CHARACTER39 = "Your Account is not vaild. Please Vist Our Website!"
+#UPDATE_SCREEN_ON_SELECT_CHARACTER40 = 	"IP validity Time: %dHr %dMin"
+#UPDATE_SCREEN_ON_SELECT_CHARACTER41 = 	"IP meter-rate term: %dD %dHr %dMin"

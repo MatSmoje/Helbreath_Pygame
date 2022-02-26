@@ -2,8 +2,10 @@ import pygame
 import testHbPak
 from PIL import Image
 from pygame.locals import *
-import time
 import json
+import lan_eng, textInput
+
+
 
 class StartGame():
     def __init__(self, screen):
@@ -12,13 +14,16 @@ class StartGame():
         self.MakeSprite("New-Dialog.pak")
         self.MakeSprite("interface.pak")
         self.m_cLoading = 4
-        self.startGameVar = 0 
-        
+        self.startGameVar = 0
+        self.passwordState = False
+        self.accountState = False
+        self.msg = textInput.inputText(0 , 0 , self.screen)
 
     def printSprites(self, totalSprites):
         print(json.dumps(totalSprites, sort_keys=True, indent=2, default=str))
 
-    
+########################################################## GAME STATES  ####################################################################
+
     def startGame(self):
         
         loading = self.totalSprites["New-Dialog.pak"]["sprites"][0]
@@ -27,6 +32,7 @@ class StartGame():
         
         if self.m_cLoading == 100:
             logIn = self.totalSprites["LoginDialog.pak"]["sprites"][0]
+            gameDialog = self.totalSprites["GameDialog.pak"]["sprites"][8]
         
         if self.startGameVar == 0 and self.m_cLoading < 100: 
             data, mode, size = self.prepareSprite(loading)
@@ -62,12 +68,11 @@ class StartGame():
             image1 = pygame.image.fromstring(data, size, mode)
             rect = image1.get_rect()
             self.screen.blit(image1, rect)
-
-
+           
             
             self.screen.blit(image1, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][1][0:4])
             
-            if pygame.Rect((260, 280), self.totalSprites["LoginDialog.pak"]["frames"][0][4][2:4]).collidepoint(pygame.mouse.get_pos()):
+            if pygame.Rect((256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][2:4]).collidepoint(pygame.mouse.get_pos()):
             # Cancel
                 self.screen.blit(image1, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
                 return 3
@@ -76,29 +81,156 @@ class StartGame():
                 self.screen.blit(image1, (139,175), self.totalSprites["LoginDialog.pak"]["frames"][0][5][0:4])
                 return 4
             # Apocalipsis Server
-            if pygame.Rect((133, 205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][2:4]).collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(image1, (133,205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][0:4])
+            if pygame.Rect((130, 205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][2:4]).collidepoint(pygame.mouse.get_pos()):
+                self.screen.blit(image1, (130,205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][0:4])
                 return 5
             
             #self.screen.blit(image1, self.totalSprites["LoginDialog.pak"]["frames"][0][0])
-             
+        
 
-        if self.startGameVar == 99:                             # Exit
+
+        if self.startGameVar == 2:                           # Login Write Account
+            
+            data, mode, size = self.prepareSprite(logIn)
+            image1 = pygame.image.fromstring(data, size, mode)
+            rect = image1.get_rect()
+            self.screen.blit(image1, rect)
+            
+            self.screen.blit(image1, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][2][0:4])
+            if pygame.Rect((256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][2:4]).collidepoint(pygame.mouse.get_pos()):
+            # Cancel
+                self.screen.blit(image1, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
+                return 6
+            # Connect
+            if pygame.Rect((82,282), self.totalSprites["LoginDialog.pak"]["frames"][0][3][2:4]).collidepoint(pygame.mouse.get_pos()):
+                self.screen.blit(image1, (82,282), self.totalSprites["LoginDialog.pak"]["frames"][0][3][0:4])
+                return 7
+            
+            # Account Box
+            if pygame.Rect((176,162),(147,18)).collidepoint(pygame.mouse.get_pos()):              
+                return 8
+            
+            # Passwd Box
+            if pygame.Rect((176,185),(147,18) ).collidepoint(pygame.mouse.get_pos()):
+                return 9
+
+######################## CHOOSE CHARACTER 
+
+        if self.startGameVar == 3:  
+            data, mode, size = self.prepareSprite(gameDialog)
+            image1 = pygame.image.fromstring(data, size, mode)
+            rect = image1.get_rect()
+            self.screen.blit(image1, rect)
+            color = (205,108,0,70)
+
+            self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER36, 137, 452 )
+
+            if pygame.Rect((106,57),(100,180)).collidepoint(pygame.mouse.get_pos()):
+                rect = (106,57,100,180)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                print("Character Box1")
+                return 10 
+
+            if pygame.Rect((216,57),(100,180)).collidepoint(pygame.mouse.get_pos()):
+                rect = (216,57,100,180)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                print("Character Box2")
+                return 11
+            
+            if pygame.Rect((327,57),(100,180)).collidepoint(pygame.mouse.get_pos()):
+                rect = (327,57,100,180)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                print("Character Box3")
+                return 12
+
+            if pygame.Rect((433,57),(100,180)).collidepoint(pygame.mouse.get_pos()):
+                rect = (433,57,100,180)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                print("Character Box4")
+                return 13
+            
+            if pygame.Rect((365,288),(176,22)).collidepoint(pygame.mouse.get_pos()):
+                rect = (365,288,176,22)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER1, 105, 285 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER2, 105, 300 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER3, 105, 315 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER4, 105, 330 )
+                print("Start Box")
+                return 14
+            
+            if pygame.Rect((365,318),(176,22)).collidepoint(pygame.mouse.get_pos()):
+                rect = (365,318,176,22)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER5, 105, 310 )
+                print("NewChar Box")
+                return 15
+            
+            if pygame.Rect((365,348),(176,22)).collidepoint(pygame.mouse.get_pos()):
+                rect = (365,348,176,22)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER6, 105, 285 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER7, 105, 300 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER8, 105, 315 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER9, 105, 330 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER10, 105, 345 )
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER11, 105, 360 )
+                print("DeleteChar Box")
+                return 16
+
+            if pygame.Rect((365,378),(176,22)).collidepoint(pygame.mouse.get_pos()):
+                rect = (365,378,176,22)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER12, 105, 310 )
+                print("Change Password")
+                return 17
+            
+            if pygame.Rect((365,408),(176,22)).collidepoint(pygame.mouse.get_pos()):
+                rect = (365,408,176,22)
+                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
+                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
+                self.screen.blit(shape_surf, rect)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER13, 105, 310 )
+                print("LogoutBox")
+                return 18
+
+            
+        
+            
+
+######################### Exit
+
+        if self.startGameVar == 99:                             
             data, mode, size = self.prepareSprite(exit)
             image1 = pygame.image.fromstring(data, size, mode)
             rect = image1.get_rect()
             self.screen.blit(image1, rect)
-    
-        
-    
+            
+            self.screen.blit(image1, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][1][0:4])
+
+########################################################## GAME STATES  ####################################################################
     def Login(self):
         logIn = self.totalSprites["LoginDialog.pak"]["sprites"][0]
         data, mode, size = self.prepareSprite(logIn)
         image1 = pygame.image.fromstring(data, size, mode)
         rect = image1.get_rect()
         self.screen.blit(image1, rect)
-
-
 
     def cursor(self): #32 x 27
         cursor = self.totalSprites["interface.pak"]["sprites"][0]
@@ -111,20 +243,11 @@ class StartGame():
         color = pygame.cursors.Cursor((5, 5), surf)
         pygame.mouse.set_cursor(color)
         
-
     def prepareSprite(self, imagen):
         data = imagen.tobytes()
         mode = imagen.mode
         size = imagen.size
         return data, mode, size
-
-        
-    
-
-
-   
-
-    
 
     def MakeSprite(self, file):
         path = "Sprites/"
@@ -132,9 +255,7 @@ class StartGame():
         spriteInfo =  p_Sprite.load()
         self.totalSprites[next(iter(spriteInfo))] = spriteInfo[next(iter(spriteInfo))]
         self.printSprites(self.totalSprites)
-        return self.totalSprites
-        
-        
+        return self.totalSprites        
 
     def UpdateScreen_OnLoading(self):
         if self.m_cLoading == 0:
@@ -142,6 +263,7 @@ class StartGame():
             self.m_cLoading = 4
         elif self.m_cLoading == 4:
             self.MakeSprite('LoginDialog.pak')
+            self.MakeSprite('GameDialog.pak')
             self.m_cLoading = 8
         elif self.m_cLoading == 8:
             self.m_cLoading = 12
