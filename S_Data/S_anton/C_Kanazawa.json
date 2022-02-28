@@ -1,0 +1,47 @@
+{
+    "FILE-DATE":
+    {
+        "file-saved-date": "2022"
+    },
+    "NAME-ACCOUNT":
+    {
+        "character-name": "Kanazawa[GM]",
+        "account-name": "anton"
+    }, 
+    "STATUS":
+    {
+        "character-profile":"__________",
+        "character-location": "elvine",
+        "character-loc-map": "lost",
+        "character-loc-x": 150,
+        "character-loc-y": 151,
+        "character-HP": 1550,
+        "character-MP": 1525,
+        "character-SP": 1400,
+        "character-LEVEL": 450,
+        "character-RATING": 110,
+        "character-STR": 247,
+        "character-INT": 250,
+        "character-VIT": 250,
+        "character-DEX": 250,
+        "character-MAG": 250,
+        "character-CHARISMA": 170,
+        "character-LUCK": 10,
+        "character-EXP": 11873,
+        "character-LU_Pool": 3,
+        "admin-user-level": 4,
+        "character-EK-Count": 53,
+        "character-PK-Count": 0,
+        "character-reward-gold": 143302,
+        "character-downskillindex": 14,
+        "character-IDnum1": -23123,
+        "character-IDnum2": 614,
+        "character-IDnum3": 1,
+        "sex-status": 1,
+        "skin-status": 3,
+        "hairstyle-status": 4,
+        "haircolor-status": 15,
+        "underwear-status": 3,
+        "super-attack-left": 8
+    }
+}

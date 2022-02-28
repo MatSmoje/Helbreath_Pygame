@@ -1,0 +1,168 @@
+[FILE-DATE]
+
+file-saved-date: 2016 2 17 20 56
+
+[NAME-ACCOUNT]
+
+character-name     = Gem[GM]
+account-name       = master
+
+[STATUS]
+
+character-profile 	=__________
+character-location   = elvine
+character-guild-name = NONE
+character-guild-GUID = -1
+character-guild-rank = -1
+character-loc-map = lost
+character-loc-x   = 150
+character-loc-y   = 151
+
+character-HP       = 1550
+character-MP       = 1525
+character-SP       = 1400
+character-LEVEL    = 450
+character-RATING   = 110
+
+character-STR      = 247
+character-INT      = 250
+character-VIT      = 250
+character-DEX      = 250
+character-MAG      = 250
+character-CHARISMA = 170
+character-LUCK     = 10
+character-EXP      = 11873
+character-LU_Pool  = 3
+admin-user-level   = 4
+
+character-EK-Count = 53
+CrasyKiller-Count  = 207
+character-PK-Count = 0
+character-reward-gold    = 143302
+character-downskillindex = 14
+character-IDnum1 = -23123
+character-IDnum2 = 614
+character-IDnum3 = 1
+sex-status       = 1
+skin-status      = 3
+hairstyle-status = 4
+haircolor-status = 15
+underwear-status = 3
+hunger-status    = 100
+timeleft-shutup  = 0
+timeleft-rating  = 0
+timeleft-force-recall  = 144000
+timeleft-firm-staminar = 0
+special-ability-time   = 0
+
+character-quest-number = 0
+character-quest-ID     = 0
+current-quest-count    = 0
+quest-reward-type      = 0
+quest-reward-amount    = 0
+character-contribution = 670
+character-quest-completed = 0
+super-attack-left      = 8
+reserved-fightzone-id  = 0 0 0
+penalty-block-date     = 0 0 0
+locked-map-name        = NONE
+locked-map-time        = 0
+dead-penalty-time = 0
+party-id          = 0
+
+crusade-GUID     = 0
+heldenian-GUID   = 0
+avatar-GUID      = 42509897
+crusade-job      = 0
+character-war-contribution = 0
+construct-point  = 0
+
+special-event-id       = 200081
+gizon-item-upgade-left = 6
+limited-user = 0
+
+last-deco-time        = -946911909
+validation-number     = 14537
+Con-check-lower-gap   = 6973
+Con-check-max-paquets = 0
+Con-check-signature   = 0xC887D6FB
+known-gold            = 0
+
+
+appr1 = 1267
+appr2 = -3552
+appr3 = -31341
+appr4 = 9228
+appr-color = 1879048432
+
+[ITEMLIST]
+
+character-item = GMPowerRing          1 2 22937 26749 1210 10 0 0 0 300 0
+character-item = BigManaPotion        1 2 7544 87 215 0 0 0 0 1 0
+character-item = BigManaPotion        1 2 22261 13081 215 0 0 0 0 1 0
+character-item = Gold                 490692 2 18590 25007 2 0 0 0 0 0 0
+character-item = GMShield             1 2 17085 24621 3 0 0 0 0 1600 0
+character-item = DarkKnightArmorM     1 2 31839 30000 525 15 0 0 0 5000 0
+character-item = DrowBoots            1 2 2663 15070 2 15 0 0 0 300 0
+character-item = AresdenPriceCape     1 2 11857 18168 217 0 0 0 0 300 0
+character-item = BigManaPotion        1 2 9637 1095 215 0 0 0 0 1 0
+character-item = BigManaPotion        1 2 9219 13978 215 0 0 0 0 1 0
+character-item = LichMS10             1 2 32467 10148 217 7 0 0 0 2988 0
+character-item = AngelicPandent(STR)  1 2 24257 5231 525 6 0 0 0 300 805306368
+character-item = eHeroArmor(M)        1 1 -23123 614 1 0 0 0 0 5000 0
+character-item = BigManaPotion        1 2 31585 406 215 0 0 0 0 1 0
+character-item = BigManaPotion        1 2 21195 20322 215 0 0 0 0 1 0
+character-item = BigManaPotion        1 2 30186 9883 215 0 0 0 0 1 0
+character-item = BattleHammer         1 2 11475 14179 2 14 0 0 0 5291 4436480
+character-item = BigManaPotion        1 2 31769 1948 215 0 0 0 0 1 0
+character-item = BigManaPotion        1 2 14603 262 215 0 0 0 0 1 0
+character-item = MedusaSword          1 2 20048 11016 215 0 0 0 0 6976 0
+character-item = XelimaGiantHammer    1 2 24047 25057 217 0 0 0 0 5983 0
+character-item = eHeroHelm(M)         1 1 -23123 614 1 0 0 0 0 2500 0
+character-item = eHeroHauberk(M)      1 1 -23123 614 1 0 0 0 0 2000 0
+character-item = eHeroLeggings(M)     1 2 6585 7873 215 0 0 0 0 3000 0
+character-item = Arrow                1 2 6496 10148 217 0 0 0 0 1 0
+
+
+character-bank-item = AcientTablet         1 2 11597 31771 1111 0 0 1 0 1 0
+character-bank-item = AcientTablet         1 2 11597 31777 1111 18 0 1 0 1 0
+character-bank-item = AcientTablet         1 2 11597 31771 1111 36 0 1 0 1 0
+character-bank-item = AcientTablet         1 2 11597 31771 1111 3 0 1 0 1 0
+character-bank-item = AcientTablet         1 2 11597 31777 1111 -10 0 1 0 1 0
+character-bank-item = AcientTablet         1 2 11597 31771 1111 21 0 1 0 1 0
+character-bank-item = AcientTablet         1 2 11597 31771 1111 34 0 1 0 1 0
+character-bank-item = XelimaGAxe           1 2 4865 13726 1215 0 0 0 0 5000 0
+character-bank-item = aHeroCap(W)          1 1 7128 530 1 0 0 0 0 1421 0
+character-bank-item = XelimaRapier         1 2 2179 18840 318 0 0 0 0 4909 0
+character-bank-item = Cape                 1 2 17811 16597 912 14 0 0 1 99 8545280
+character-bank-item = RingOfMage           1 2 7339 493 217 0 0 0 0 300 0
+character-bank-item = WandMS30             1 2 12999 6541 721 0 0 0 0 3609 0
+character-bank-item = NecklaceOfEfreet     1 2 5398 9739 331 0 0 0 0 300 0
+character-bank-item = NeckMS10             1 2 13655 16140 10 0 0 0 0 300 268435456
+character-bank-item = BattleAxe+1          1 2 372 21270 913 8 0 0 2 2007 9643776
+character-bank-item = IceElementalSword    1 2 29085 17725 330 0 0 0 0 5000 0
+character-bank-item = Hauberk(W)           1 2 9489 8187 720 0 0 0 1 356 8599040
+character-bank-item = ChainHose(W)         1 2 32664 21831 429 0 600 0 2 366 275015936
+character-bank-item = AcientTablet         1 2 11597 31771 1111 5 0 1 0 1 0
+character-bank-item = XelimaStone          1 2 16842 23958 5 0 0 0 0 3 0
+character-bank-item = aHeroRobe(W)         1 1 7128 530 1 0 0 0 0 3341 0
+character-bank-item = MagicElixir          1 2 30379 1978 530 0 0 65 0 1 0
+character-bank-item = MagicElixir          1 2 9218 15517 530 0 0 67 0 1 0
+character-bank-item = BerzerkOil           1 2 15263 4417 530 0 0 59 0 1 0
+character-bank-item = BerzerkOil           1 2 7126 8198 530 0 0 57 0 1 0
+character-bank-item = BerzerkOil           1 2 13362 6155 530 0 0 62 0 1 0
+character-bank-item = BerzerkOil           1 2 21813 28102 530 0 0 60 0 1 0
+
+
+[MAGIC-SKILL-MASTERY]
+//------------------012345678901234567890123456789012345678901234567890
+magic-mastery     = 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111011111
+skill-mastery     = 100 100 0 100 100 100 100 100 100 100 100 100 100 100 100 0 0 0 20 100 0 100 100 100 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+skill-SSN     = 0 123 0 0 21772 612 8646 791 50417 26931 39862 0 46 2 76620 0 0 0 16 31 0 247804 76 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+
+[ITEM-EQUIP-STATUS]
+item-equip-status = 10000011001110000000011100000000000000000000000000
+item-position-x = 39 153 153 7 149 141 42 40 153 153 11 127 127 153 153 153 105 153 153 74 40 40 40 68 122 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 
+item-position-y = 80 -9 -9 40 26 76 45 30 -9 -9 31 -7 -7 -9 -9 -9 10 -9 -9 44 30 30 30 43 5 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 
+
+[EOF]

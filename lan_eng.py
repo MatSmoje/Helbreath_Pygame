@@ -1,3 +1,66 @@
+_BDRAW_ON_CREATE_NEW_CHARACTER1 = "Enter a character name."
+_BDRAW_ON_CREATE_NEW_CHARACTER2 = "Select character's gender."
+_BDRAW_ON_CREATE_NEW_CHARACTER3 = "Select character's skin."
+_BDRAW_ON_CREATE_NEW_CHARACTER4 = "Special stat points left: "
+
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER1 = "Enter a character name."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER2 = "Select character's gender."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER3 = "Select character's skin."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER4 = "Select character's hairstyle."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER5 = "Select character's hair color."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER6 = "Select the color of underwear."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7 = "Determine your character's initial"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8 = "strength assigned. As STR is"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9 = "increased, character's maximum"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10 = "HP and maximum stamina increases."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11 = "You can equip heavier weapons and shields."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER12 = "Determine your character's initial"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER13 = "vitality assigned. As VIT is"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER14 = "increased, the max. HP greatly"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER15 = "increases as the recovery amount."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER16 = "Physical damage absorption slightly increases."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER17 = "Determine your character's initial"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER18 = "dexterity assigned. As DEX is"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER19 = "increased, evasion from physical hits"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER20 = "(defense ratio) and hit probability increases."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER21 = "Determine your character's initial"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER22 = "intelligence assigned. As INT is"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER23 = "increased, more magic can be learned,"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER24 = "casting probability and maximum MP increases."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER25 = "Determine your character's initial"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER26 = "magic assigned. As MAG is"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER27 = "increased, magical resistance increases"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER28 = "as well as maximum MP and MP recovery."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER29 = "Determine your character's initial"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER30 = "Range assigned. If Range is increased"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER31 = "to a certain amount, you can form a"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER32 = "guild. Cost of item purchase is reduced."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER35 = "Please enter a character name."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER36 = "You need to select your character class."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER39 = "Cannot use special characters "
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER40 = "in your character's name. Please"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER41 = "type another name."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER42 = "The character's name is not appropriate."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER43 = "Please retry with another name."
+
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER44 = "Create with the character"
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER45 = "with the above settings."
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER46 = "     "
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER47 = "     "
+UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER48 = "     "
+
+
 UPDATE_SCREEN_ON_SELECT_CHARACTER1 = "Log in with the selected character."
 UPDATE_SCREEN_ON_SELECT_CHARACTER2 = "You can log in by clicking the button"
 UPDATE_SCREEN_ON_SELECT_CHARACTER3 = "or pressing the enter after selecting"
@@ -38,5 +101,21 @@ UPDATE_SCREEN_ON_SELECT_CHARACTER36 = "Helbreath Kanazawa"
 
 UPDATE_SCREEN_ON_SELECT_CHARACTER37 = "Your Account Is Validated!"
 UPDATE_SCREEN_ON_SELECT_CHARACTER39 = "Your Account is not vaild. Please Vist Our Website!"
-#UPDATE_SCREEN_ON_SELECT_CHARACTER40 = 	"IP validity Time: %dHr %dMin"
-#UPDATE_SCREEN_ON_SELECT_CHARACTER41 = 	"IP meter-rate term: %dD %dHr %dMin"
+#UPDATE_SCREEN_ON_SELECT_CHARACTER40 =  = "IP validity Time: %dHr %dMin"
+#UPDATE_SCREEN_ON_SELECT_CHARACTER41 =  = "IP meter-rate term: %dD %dHr %dMin"
+
+MSG_CHARACTERNAME = "Character Name"
+MSG_GENDER = "Gender"
+MSG_SKINCOLOR = "Skin Color"
+MSG_HAIRSTYLE = "Hair Style"
+MSG_HAIRCOLOR = "Hair Color"
+MSG_UNDERWEARCOLOR = "Underwear Color"
+MSG_STRENGTH = "Strength"
+MSG_VITALITY = "Vitality"
+MSG_DEXTERITY = "Dexterity"
+MSG_INTELLIGENCE = "Intelligence"
+MSG_MAGIC = "Magic"
+MSG_CHARSIMA = "Charisma"
+MSG_HITPOINT = "Hit Point"
+MSG_MANAPOINT = "Mana Point"
+MSG_STAMINARPOINT = "Staminar Point"

@@ -14,29 +14,30 @@ pygame.mixer.init()  # Initialize the mixer module.
 def main():
     global running
     pygame.init()
-    #screen = pygame.display.set_mode((640, 480), pygame.FULLSCREEN)
-    screen = pygame.display.set_mode((640, 480))
+    screen = pygame.display.set_mode((640, 480)) #screen = pygame.display.set_mode((640, 480), pygame.FULLSCREEN)
     pygame.display.set_caption("Helbreath Cabito")
 
     e14 = pygame.mixer.Sound('SOUNDS/E14.WAV') # Click Sound
 
     # Creación de objetos
     login = initGame.StartGame(screen)
-    
-    accountBox = textInput.inputText( 180, 158, screen)
-    passwdBox = textInput.inputText( 180, 180, screen)
+    accountBox = textInput.inputText(180, 158, screen)
+    passwdBox = textInput.inputText(180, 180, screen)
     checkCredent = checkLogin.BbddLogin()
     textBoxs = [accountBox,passwdBox]
     
     while running:
         ev = pygame.event.get()
         pos = pygame.mouse.get_pos()
-        #print(pos)
+        print(pos)
 
 
         screen.fill((0,0,0))
         login.cursor()
-        menuStateI = login.startGame()
+        mouseHoverDetect = login.startGame() # Menu MouseHover
+
+        #print(login.startGameVar)
+        #print("State of mouseHover: " +str(mouseHoverDetect))
         
         if login.startGameVar == 2: 
             for box in textBoxs:
@@ -44,61 +45,70 @@ def main():
         
         
         
+        
+
 
 
         # time = pygame.time.get_ticks()
         
+            
         
         for event in ev:
+
             if login.accountState:
                 accountBox.write(event)
                     
             if login.passwordState:
                 passwdBox.write(event,True)
-
+                    
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                if menuStateI == 1:
+                if mouseHoverDetect == 1:
                     e14.play()
                     print("Login Buttn pressed")
                     login.startGameVar = 1
 
-                if menuStateI == 2:
+                if mouseHoverDetect == 2:
                     e14.play()  
                     print("newAccount Buttn pressed")
+                    login.startGameVar = 2
                 
-                if menuStateI == 3:
+                if mouseHoverDetect == 3:
                     e14.play()  
                     print("Select Server: Cancel Buttn pressed")
                     login.startGameVar = 0
                 
-                if menuStateI == 4:
+                if mouseHoverDetect == 4:
                     e14.play()  
                     print("Abaddon Serv")
                     login.accountState = True
                     login.startGameVar = 2
                 
-                if menuStateI == 5:
+                if mouseHoverDetect == 5:
                     e14.play()  
                     print("Apocalypse Serv")
                     login.startGameVar = 2
                 
-                if menuStateI == 6:
+                if mouseHoverDetect == 6:
                     e14.play()  
                     print("Write Credentials: Cancel Button Pressed")
                     login.startGameVar = 1
                     login.accountState = False
                     login.passwordState = False
+                    accountBox.cleanLoginData()
+                    passwdBox.cleanLoginData()
                     
 
-                if menuStateI == 7:
+                if mouseHoverDetect == 7:
                     e14.play()  
                     print("Connect")
                     user =  accountBox.getData()
                     passwd = passwdBox.getData()
                     if checkCredent.checkCredentials(user,passwd):
                         login.startGameVar = 3  # Estado Logeado
+                    accountBox.cleanLoginData()
+                    passwdBox.cleanLoginData()
                     
-                if menuStateI == 8:
+                if mouseHoverDetect == 8:
                     e14.play()
                     login.accountState = True
                     login.passwordState = not login.accountState
@@ -107,7 +117,7 @@ def main():
                     # Creamos objeto de escucha de texto
                     
                 
-                if menuStateI == 9:
+                if mouseHoverDetect == 9:
                     e14.play()
                     login.passwordState = True
                     login.accountState = not login.passwordState
@@ -116,58 +126,65 @@ def main():
                     # Creamos objeto de escucha de texto
                     
                     # login.startGameVar = 0
-                if menuStateI == 10:
+                    
+### Select character 10, 11, 12, 13, 14, 15, 16, 17, 18
+                if mouseHoverDetect == 10:
                     e14.play()
-
+                    print("Char List: 1")
                 
-                if menuStateI == 11:
+                if mouseHoverDetect == 11:
                     e14.play()
-                    print("")
+                    print("Char List: 2")
 
-                if menuStateI == 12:
+                if mouseHoverDetect == 12:
                     e14.play()
-                    print("")
+                    print("Char List: 3")
 
-                if menuStateI == 13:
+                if mouseHoverDetect == 13:
+                    e14.play()
+                    print("Char List: 4")
+                    
+                if mouseHoverDetect == 14:
+                    e14.play()
+                    print("Char List: Start")
+                    
+                if mouseHoverDetect == 15:
+                    e14.play()
+                    print("Create Char")
+                    login.startGameVar = 4
+                    
+                if mouseHoverDetect == 16:
                     e14.play()
                     print("")
                     
-                if menuStateI == 14:
+                if mouseHoverDetect == 17:
                     e14.play()
                     print("")
                     
-                if menuStateI == 15:
+                if mouseHoverDetect == 18: # Logout From Select Character
                     e14.play()
-                    print("")
+                    login.accountState = False
+                    login.passwordState = False
                     
-                if menuStateI == 16:
-                    e14.play()
-                    print("")
-                    
-                if menuStateI == 17:
-                    e14.play()
-                    print("")
-                    
-                if menuStateI == 18:
-                    e14.play()
-                    print("")
                     login.startGameVar = 0
                     
                 
                 
                 
-                if menuStateI == 99:
+                if mouseHoverDetect == 99:
                     e14.play()
                     login.startGameVar = 99
-                    running = False
-                
-                
+                    
 
 
             if event.type == pygame.QUIT:
                 login.startGameVar = 99
-                running = False
                 
+                
+                
+        if login.exitTrigger == True:
+            running = False
+                    
         
         pygame.display.update()
 
