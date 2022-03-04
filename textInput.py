@@ -7,6 +7,7 @@ class inputText():
     def __init__(self, x, y, screen, text = ''):
         self.screen = screen
         self.font = pygame.font.SysFont("Arial", 13)
+        #self.font = pygame.font.Font('HB/FONTS/HAN3.FNT',13)
         self.activeColor = (255,255,255)
         self.timer = pygame.time.get_ticks()
         self.pos = pygame.mouse.get_pos()

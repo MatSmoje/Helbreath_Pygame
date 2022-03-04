@@ -29,7 +29,7 @@ def main():
     while running:
         ev = pygame.event.get()
         pos = pygame.mouse.get_pos()
-        print(pos)
+        #print(pos)
 
 
         screen.fill((0,0,0))
@@ -70,7 +70,7 @@ def main():
                 if mouseHoverDetect == 2:
                     e14.play()  
                     print("newAccount Buttn pressed")
-                    login.startGameVar = 2
+                    login.startGameVar = 4
                 
                 if mouseHoverDetect == 3:
                     e14.play()  
@@ -130,18 +130,22 @@ def main():
 ### Select character 10, 11, 12, 13, 14, 15, 16, 17, 18
                 if mouseHoverDetect == 10:
                     e14.play()
+                    login.charSelection = 0
                     print("Char List: 1")
                 
                 if mouseHoverDetect == 11:
                     e14.play()
+                    login.charSelection = 1
                     print("Char List: 2")
 
                 if mouseHoverDetect == 12:
                     e14.play()
+                    login.charSelection = 2
                     print("Char List: 3")
 
                 if mouseHoverDetect == 13:
                     e14.play()
+                    login.charSelection = 3
                     print("Char List: 4")
                     
                 if mouseHoverDetect == 14:
@@ -167,9 +171,38 @@ def main():
                     login.passwordState = False
                     
                     login.startGameVar = 0
+                
+                if mouseHoverDetect == 19: # Cancel create new Character
+                    login.startGameVar = 3
                     
+                if mouseHoverDetect == 20:
+                    login.startGameVar = 5
                 
+                if mouseHoverDetect == 21:
+                    if login.specialStatPoints > 0:
+                        login.str = login.str + 1
+                        login.specialStatPoints = login.specialStatPoints - 1
+
+                if mouseHoverDetect == 22:
+                    login.str = login.str - 1
+                    login.specialStatPoints = login.specialStatPoints + 1
                 
+                if mouseHoverDetect == 23:
+                    login.vit = login.vit + 1
+                    
+                if mouseHoverDetect == 24:
+                    login.vit = login.vit - 1
+
+                if mouseHoverDetect == 25:
+                    login.dex = login.dex + 1
+                    
+                if mouseHoverDetect == 26:
+                    login.dex = login.dex - 1
+
+
+
+
+
                 
                 if mouseHoverDetect == 99:
                     e14.play()

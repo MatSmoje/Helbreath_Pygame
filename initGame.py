@@ -19,6 +19,15 @@ class StartGame():
         self.accountState = False
         self.msg = textInput.inputText(0 , 0 , self.screen)
         self.exitTrigger = False
+        self.charSelection = 0
+        ### stats
+        self.specialStatPoints = 10 
+        self.str = 10 
+        self.vit = 10 
+        self.dex = 10 
+        self.int = 10 
+        self.mag = 10 
+        self.chr = 10 
 
     def printSprites(self, totalSprites):
         print(json.dumps(totalSprites, sort_keys=True, indent=2, default=str))
@@ -123,50 +132,38 @@ class StartGame():
                 return 9
 
 ######################## LOGEADO - CHOOSE CHARACTER 
+       
 
         if self.startGameVar == 3:  
             data, mode, size = self.prepareSprite(gameDialog)
             image1 = pygame.image.fromstring(data, size, mode)
             rect = image1.get_rect()
             self.screen.blit(image1, rect)
-            color = (205,108,0,70)
+            
 
-            self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER36, 137, 452 )
+            self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER36, 137, 452)
+
+            charSelectionList = [(103,54),(212,54),(321,54),(430,54)]
+            data, mode, size = self.prepareSprite(self.dialogText1)
+            image = pygame.image.fromstring(data, size, mode)
+            image.set_colorkey((0,123,255))
+            self.screen.blit(image, charSelectionList[self.charSelection], self.totalSprites["DialogText.pak"]["frames"][1][62][0:4])
+            
 
             if pygame.Rect((106,57),(100,180)).collidepoint(pygame.mouse.get_pos()):   ### print("Character Box1")
-                rect = (106,57,100,180)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
                 return 10 
 
             if pygame.Rect((216,57),(100,180)).collidepoint(pygame.mouse.get_pos()):
-                rect = (216,57,100,180)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)    #### print("Character Box2")
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
-                
                 return 11
             
             if pygame.Rect((327,57),(100,180)).collidepoint(pygame.mouse.get_pos()):
-                rect = (327,57,100,180)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)    ###  print("Character Box3")
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
                 return 12
 
             if pygame.Rect((433,57),(100,180)).collidepoint(pygame.mouse.get_pos()):    ### print("Character Box4")
-                rect = (433,57,100,180)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
                 return 13
             
             if pygame.Rect((365,288),(176,22)).collidepoint(pygame.mouse.get_pos()):          ### print("Start Box")
-                rect = (365,288,176,22)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
+                self.screen.blit(image, (365,288), self.totalSprites["DialogText.pak"]["frames"][1][56][0:4])
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER1, 105, 285 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER2, 105, 300 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER3, 105, 315 )
@@ -174,18 +171,12 @@ class StartGame():
                 return 14
             
             if pygame.Rect((365,318),(176,22)).collidepoint(pygame.mouse.get_pos()):           #### print("NewChar Box")
-                rect = (365,318,176,22)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
+                self.screen.blit(image, (365,318), self.totalSprites["DialogText.pak"]["frames"][1][57][0:4])
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER5, 105, 310 )
                 return 15
             
             if pygame.Rect((365,348),(176,22)).collidepoint(pygame.mouse.get_pos()):           #### print("DeleteChar Box")
-                rect = (365,348,176,22)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
+                self.screen.blit(image, (365,348), self.totalSprites["DialogText.pak"]["frames"][1][58][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER6, 105, 285 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER7, 105, 300 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER8, 105, 315 )
@@ -195,18 +186,12 @@ class StartGame():
                 return 16
 
             if pygame.Rect((365,378),(176,22)).collidepoint(pygame.mouse.get_pos()):           #### print("Change Password")
-                rect = (365,378,176,22)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
+                self.screen.blit(image, (365,378), self.totalSprites["DialogText.pak"]["frames"][1][59][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER12, 105, 310 )
                 return 17
             
             if pygame.Rect((365,408),(176,22)).collidepoint(pygame.mouse.get_pos()):               ### print("LogoutBox")
-                rect = (365,408,176,22)
-                shape_surf = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
-                pygame.draw.rect(shape_surf, color, shape_surf.get_rect())
-                self.screen.blit(shape_surf, rect)
+                self.screen.blit(image, (365,408), self.totalSprites["DialogText.pak"]["frames"][1][60][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER13, 105, 310)
                 return 18
 
@@ -214,10 +199,33 @@ class StartGame():
 ######################## CREATE NEW CHARACTER
         if self.startGameVar == 4:
             gameDialog = self.totalSprites["GameDialog.pak"]["sprites"][9]
+            
+            #item-equipM.pak
+            
+
             data, mode, size = self.prepareSprite(gameDialog)
             image1 = pygame.image.fromstring(data, size, mode)
+            print(type(image1))
             rect = image1.get_rect()
             self.screen.blit(image1, rect)
+            
+
+            data, mode, size = self.prepareSprite(self.itemEquipM0)
+            self.screen.blit(pygame.image.fromstring(data, size, mode), (376,100),self.totalSprites["item-equipM.pak"]["frames"][0][1][0:4])
+            #.set_colorkey(0,123,255)
+
+
+            data, mode, size = self.prepareSprite(self.dialogText1)
+            image = pygame.image.fromstring(data, size, mode)
+            self.screen.blit(image, (375,448), self.totalSprites["DialogText.pak"]["frames"][1][24][0:4])
+            self.screen.blit(image, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][16][0:4]) #Cancel
+
+            self.screen.blit(image, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][67][0:4])  # WARRIOR
+            self.screen.blit(image, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][65][0:4]) # MAGE
+            self.screen.blit(image, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][63][0:4]) # MASTER
+            
+
+            #56 start 
             self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER1, 95, 85)
             self.msg.writeText(lan_eng.MSG_CHARACTERNAME, 77, 106)
             self.msg.writeText(lan_eng.MSG_GENDER, 77, 155)
@@ -226,7 +234,7 @@ class StartGame():
             self.msg.writeText(lan_eng.MSG_HAIRCOLOR, 77, 202)
             self.msg.writeText(lan_eng.MSG_UNDERWEARCOLOR, 77, 217)
 
-            self.msg.writeText(lan_eng._BDRAW_ON_CREATE_NEW_CHARACTER4, 95, 249)
+            self.msg.writeText(lan_eng._BDRAW_ON_CREATE_NEW_CHARACTER4+" "+ str(self.specialStatPoints), 95, 249)
 
             self.msg.writeText(lan_eng.MSG_STRENGTH, 77, 270)
             self.msg.writeText(lan_eng.MSG_VITALITY, 77, 286)
@@ -238,6 +246,41 @@ class StartGame():
             self.msg.writeText(lan_eng.MSG_HITPOINT, 440, 187)
             self.msg.writeText(lan_eng.MSG_MANAPOINT, 440, 203)
             self.msg.writeText(lan_eng.MSG_STAMINARPOINT, 440, 220)
+        
+
+
+            ## TEST NUMBER WRITE
+            self.msg.writeText("37", 550, 190)
+            self.msg.writeText("27", 550, 205)
+            self.msg.writeText("22", 550, 220)
+
+            self.msg.writeText(str(self.str), 203, 275) # STR
+            self.msg.writeText(str(self.vit), 203, 290) # VIT
+            self.msg.writeText(str(self.dex), 203, 305) # DEX
+            self.msg.writeText(str(self.int), 203, 323) # INT
+            self.msg.writeText(str(self.mag), 203, 338) # MAG
+            self.msg.writeText(str(self.chr), 203, 353) # CHR
+
+
+
+            if pygame.Rect((59,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE WARRIOR
+                self.screen.blit(image, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][68][0:4])
+                
+
+            if pygame.Rect((144,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MAGE
+                self.screen.blit(image, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][66][0:4])
+                
+            if pygame.Rect((229,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MASTER
+                self.screen.blit(image, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][64][0:4])
+                
+
+            if pygame.Rect((505,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # Cancel BTN
+                self.screen.blit(image, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][17][0:4])
+                return 19
+
+            if pygame.Rect((375,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE BTN
+                self.screen.blit(image, (375,448), self.totalSprites["DialogText.pak"]["frames"][1][25][0:4])
+                return 20
 
             # MOUSEHOVER OVER  STR
             if pygame.Rect((236,276),(21,15)).collidepoint(pygame.mouse.get_pos()): # + STR
@@ -246,13 +289,92 @@ class StartGame():
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
-            if pygame.Rect((258,276),(21,15)).collidepoint(pygame.mouse.get_pos()): # + STR
+                return 21
+            if pygame.Rect((258,276),(21,15)).collidepoint(pygame.mouse.get_pos()): # - STR
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 22
+            if pygame.Rect((236,294),(21,15)).collidepoint(pygame.mouse.get_pos()): # + VIT
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 23
+            if pygame.Rect((258,294),(21,15)).collidepoint(pygame.mouse.get_pos()): # - VIT
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 24
+                                
+            if pygame.Rect((236,312),(21,13)).collidepoint(pygame.mouse.get_pos()): # + DEX
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 25
 
+            if pygame.Rect((258,312),(21,13)).collidepoint(pygame.mouse.get_pos()): # - DEX
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 26
+                                                
+            if pygame.Rect((236,328),(21,14)).collidepoint(pygame.mouse.get_pos()): # + INT
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 27
+
+            if pygame.Rect((258,328),(21,14)).collidepoint(pygame.mouse.get_pos()): # - INT
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 28
+
+            if pygame.Rect((236,342),(21,15)).collidepoint(pygame.mouse.get_pos()): # + MAG
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 29
+
+            if pygame.Rect((258,342),(21,15)).collidepoint(pygame.mouse.get_pos()): # - MAG
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 30
+            
+            if pygame.Rect((236,358),(21,14)).collidepoint(pygame.mouse.get_pos()): # + CHR
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                # self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 31
+                
+            if pygame.Rect((258,357),(21,15)).collidepoint(pygame.mouse.get_pos()): # - CHR
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER7, 376, 322)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER8, 376, 337)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER9, 376, 352)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
+                self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
+                return 32
            
             
 
@@ -319,6 +441,26 @@ class StartGame():
         elif self.m_cLoading == 4:
             self.MakeSprite('LoginDialog.pak')
             self.MakeSprite('GameDialog.pak')
+            self.MakeSprite('DialogText.pak')
+            self.dialogText0 = self.totalSprites["DialogText.pak"]["sprites"][0]
+            self.dialogText1 = self.totalSprites["DialogText.pak"]["sprites"][1]
+            self.MakeSprite('item-equipM.pak')
+            self.itemEquipM0 = self.totalSprites["item-equipM.pak"]["sprites"][0]
+            self.itemEquipM1 = self.totalSprites["item-equipM.pak"]["sprites"][1]
+            self.itemEquipM2 = self.totalSprites["item-equipM.pak"]["sprites"][2]
+            self.itemEquipM3 = self.totalSprites["item-equipM.pak"]["sprites"][3]
+            self.itemEquipM4 = self.totalSprites["item-equipM.pak"]["sprites"][4]
+            self.itemEquipM5 = self.totalSprites["item-equipM.pak"]["sprites"][5]
+            self.itemEquipM6 = self.totalSprites["item-equipM.pak"]["sprites"][6]
+            self.itemEquipM7 = self.totalSprites["item-equipM.pak"]["sprites"][7]
+            self.itemEquipM8 = self.totalSprites["item-equipM.pak"]["sprites"][8]
+            self.itemEquipM9 = self.totalSprites["item-equipM.pak"]["sprites"][9]
+            self.itemEquipM10 = self.totalSprites["item-equipM.pak"]["sprites"][10]
+            self.itemEquipM11 = self.totalSprites["item-equipM.pak"]["sprites"][11]
+            self.itemEquipM12 = self.totalSprites["item-equipM.pak"]["sprites"][12]
+            self.itemEquipM13 = self.totalSprites["item-equipM.pak"]["sprites"][13]
+            self.itemEquipM14 = self.totalSprites["item-equipM.pak"]["sprites"][14]
+
             self.m_cLoading = 8
         elif self.m_cLoading == 8:
             self.m_cLoading = 12
