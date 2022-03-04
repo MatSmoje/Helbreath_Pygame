@@ -47,55 +47,47 @@ class StartGame():
 
 ##################### LOGIN - NEW ACC - EXIT #######################
         if self.startGameVar == 0 and self.m_cLoading < 100: 
-            data, mode, size = self.prepareSprite(loading)
-            image1 = pygame.image.fromstring(data, size, mode) 
-            rect = image1.get_rect()
-            self.screen.blit(image1, rect)
+            rect = loading.get_rect()
+            self.screen.blit(loading, rect)
             self.UpdateScreen_OnLoading()
             print(self.m_cLoading)
         
         if self.startGameVar == 0 and self.m_cLoading == 100:
-            data, mode, size = self.prepareSprite(newAcc)
-            self.image1 = pygame.image.fromstring(data, size, mode)
-            rect = self.image1.get_rect()
-            self.screen.blit(self.image1, rect)
+            rect = newAcc.get_rect()
+            self.screen.blit(newAcc, rect)
             login = pygame.Rect((386, 179), (162, 20))
             newAccount = pygame.Rect((386, 217), (162, 20))
             exit = pygame.Rect((386, 256), (162, 20))
 
             if login.collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(self.image1,(386, 179),(134, 484, 162, 20)) 
+                self.screen.blit(newAcc,(386, 179),(134, 484, 162, 20)) 
                 return 1 #Login
 
             if newAccount.collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(self.image1,(386, 217),(301, 484, 162, 20))
+                self.screen.blit(newAcc,(386, 217),(301, 484, 162, 20))
                 return 2 # New Account
 
             if exit.collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(self.image1,(386, 256),(468, 484, 162, 20))
+                self.screen.blit(newAcc,(386, 256),(468, 484, 162, 20))
                 return 99 # Exit
 ##################### CHOOSE SERVER ABBY - APOC  #######################
 
         if self.startGameVar == 1:                              # Login
-            data, mode, size = self.prepareSprite(logIn)
-            image1 = pygame.image.fromstring(data, size, mode)
-            rect = image1.get_rect()
-            self.screen.blit(image1, rect)
-           
-            
-            self.screen.blit(image1, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][1][0:4])
+            rect = logIn.get_rect()
+            self.screen.blit(logIn, rect)
+            self.screen.blit(logIn, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][1][0:4])
             
             if pygame.Rect((256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][2:4]).collidepoint(pygame.mouse.get_pos()):
             # Cancel
-                self.screen.blit(image1, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
+                self.screen.blit(logIn, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
                 return 3
             # Abadon Server
             if pygame.Rect((139, 175), self.totalSprites["LoginDialog.pak"]["frames"][0][5][2:4]).collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(image1, (139,175), self.totalSprites["LoginDialog.pak"]["frames"][0][5][0:4])
+                self.screen.blit(logIn, (139,175), self.totalSprites["LoginDialog.pak"]["frames"][0][5][0:4])
                 return 4
             # Apocalipsis Server
             if pygame.Rect((130, 205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][2:4]).collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(image1, (130,205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][0:4])
+                self.screen.blit(logIn, (130,205), self.totalSprites["LoginDialog.pak"]["frames"][0][6][0:4])
                 return 5
             
             #self.screen.blit(image1, self.totalSprites["LoginDialog.pak"]["frames"][0][0])
@@ -105,22 +97,18 @@ class StartGame():
         if self.startGameVar == 2:
             # Limpiar datos
 
-
+            rect = logIn.get_rect()
+            self.screen.blit(logIn, rect)
             
-            data, mode, size = self.prepareSprite(logIn)
-            image1 = pygame.image.fromstring(data, size, mode)
-            rect = image1.get_rect()
-            self.screen.blit(image1, rect)
-            
-            self.screen.blit(image1, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][2][0:4])
+            self.screen.blit(logIn, (40,120), self.totalSprites["LoginDialog.pak"]["frames"][0][2][0:4])
             if pygame.Rect((256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][2:4]).collidepoint(pygame.mouse.get_pos()):
             # Cancel
-                self.screen.blit(image1, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
+                self.screen.blit(logIn, (256,282), self.totalSprites["LoginDialog.pak"]["frames"][0][4][0:4])
                 print("State 6")
                 return 6
             # Connect
             if pygame.Rect((82,282), self.totalSprites["LoginDialog.pak"]["frames"][0][3][2:4]).collidepoint(pygame.mouse.get_pos()):
-                self.screen.blit(image1, (82,282), self.totalSprites["LoginDialog.pak"]["frames"][0][3][0:4])
+                self.screen.blit(logIn, (82,282), self.totalSprites["LoginDialog.pak"]["frames"][0][3][0:4])
                 return 7
             
             # Account Box
@@ -135,19 +123,13 @@ class StartGame():
        
 
         if self.startGameVar == 3:  
-            data, mode, size = self.prepareSprite(gameDialog)
-            image1 = pygame.image.fromstring(data, size, mode)
-            rect = image1.get_rect()
-            self.screen.blit(image1, rect)
-            
+            rect = gameDialog.get_rect()
+            self.screen.blit(gameDialog, rect)
 
             self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER36, 137, 452)
-
             charSelectionList = [(103,54),(212,54),(321,54),(430,54)]
-            data, mode, size = self.prepareSprite(self.dialogText1)
-            image = pygame.image.fromstring(data, size, mode)
-            image.set_colorkey((0,123,255))
-            self.screen.blit(image, charSelectionList[self.charSelection], self.totalSprites["DialogText.pak"]["frames"][1][62][0:4])
+            self.dialogText1.set_colorkey((0,123,255))
+            self.screen.blit(self.dialogText1, charSelectionList[self.charSelection], self.totalSprites["DialogText.pak"]["frames"][1][62][0:4])
             
 
             if pygame.Rect((106,57),(100,180)).collidepoint(pygame.mouse.get_pos()):   ### print("Character Box1")
@@ -163,7 +145,7 @@ class StartGame():
                 return 13
             
             if pygame.Rect((365,288),(176,22)).collidepoint(pygame.mouse.get_pos()):          ### print("Start Box")
-                self.screen.blit(image, (365,288), self.totalSprites["DialogText.pak"]["frames"][1][56][0:4])
+                self.screen.blit(self.dialogText1, (365,288), self.totalSprites["DialogText.pak"]["frames"][1][56][0:4])
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER1, 105, 285 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER2, 105, 300 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER3, 105, 315 )
@@ -171,12 +153,12 @@ class StartGame():
                 return 14
             
             if pygame.Rect((365,318),(176,22)).collidepoint(pygame.mouse.get_pos()):           #### print("NewChar Box")
-                self.screen.blit(image, (365,318), self.totalSprites["DialogText.pak"]["frames"][1][57][0:4])
+                self.screen.blit(self.dialogText1, (365,318), self.totalSprites["DialogText.pak"]["frames"][1][57][0:4])
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER5, 105, 310 )
                 return 15
             
             if pygame.Rect((365,348),(176,22)).collidepoint(pygame.mouse.get_pos()):           #### print("DeleteChar Box")
-                self.screen.blit(image, (365,348), self.totalSprites["DialogText.pak"]["frames"][1][58][0:4]) #check
+                self.screen.blit(self.dialogText1, (365,348), self.totalSprites["DialogText.pak"]["frames"][1][58][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER6, 105, 285 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER7, 105, 300 )
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER8, 105, 315 )
@@ -186,12 +168,12 @@ class StartGame():
                 return 16
 
             if pygame.Rect((365,378),(176,22)).collidepoint(pygame.mouse.get_pos()):           #### print("Change Password")
-                self.screen.blit(image, (365,378), self.totalSprites["DialogText.pak"]["frames"][1][59][0:4]) #check
+                self.screen.blit(self.dialogText1, (365,378), self.totalSprites["DialogText.pak"]["frames"][1][59][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER12, 105, 310 )
                 return 17
             
             if pygame.Rect((365,408),(176,22)).collidepoint(pygame.mouse.get_pos()):               ### print("LogoutBox")
-                self.screen.blit(image, (365,408), self.totalSprites["DialogText.pak"]["frames"][1][60][0:4]) #check
+                self.screen.blit(self.dialogText1, (365,408), self.totalSprites["DialogText.pak"]["frames"][1][60][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER13, 105, 310)
                 return 18
 
@@ -202,27 +184,22 @@ class StartGame():
             
             #item-equipM.pak
             
-
-            data, mode, size = self.prepareSprite(gameDialog)
-            image1 = pygame.image.fromstring(data, size, mode)
-            print(type(image1))
-            rect = image1.get_rect()
-            self.screen.blit(image1, rect)
+            rect = gameDialog.get_rect()
+            self.screen.blit(gameDialog, rect)
             
 
-            data, mode, size = self.prepareSprite(self.itemEquipM0)
-            self.screen.blit(pygame.image.fromstring(data, size, mode), (376,100),self.totalSprites["item-equipM.pak"]["frames"][0][1][0:4])
+            self.itemEquipM0.set_colorkey((0,0,0))
+            self.screen.blit(self.itemEquipM0, (376,100),self.totalSprites["item-equipM.pak"]["frames"][0][1][0:4])
             #.set_colorkey(0,123,255)
 
 
-            data, mode, size = self.prepareSprite(self.dialogText1)
-            image = pygame.image.fromstring(data, size, mode)
-            self.screen.blit(image, (375,448), self.totalSprites["DialogText.pak"]["frames"][1][24][0:4])
-            self.screen.blit(image, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][16][0:4]) #Cancel
+            
+            self.screen.blit(self.dialogText1, (375,448), self.totalSprites["DialogText.pak"]["frames"][1][24][0:4])
+            self.screen.blit(self.dialogText1, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][16][0:4]) #Cancel
 
-            self.screen.blit(image, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][67][0:4])  # WARRIOR
-            self.screen.blit(image, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][65][0:4]) # MAGE
-            self.screen.blit(image, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][63][0:4]) # MASTER
+            self.screen.blit(self.dialogText1, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][67][0:4])  # WARRIOR
+            self.screen.blit(self.dialogText1, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][65][0:4]) # MAGE
+            self.screen.blit(self.dialogText1, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][63][0:4]) # MASTER
             
 
             #56 start 
@@ -250,9 +227,12 @@ class StartGame():
 
 
             ## TEST NUMBER WRITE
+            # hitPoint = 
+            manaPoint =  2* self.mag + 0.5 * self.int
+            staminarPoint = 2 + 2 * self.str
             self.msg.writeText("37", 550, 190)
-            self.msg.writeText("27", 550, 205)
-            self.msg.writeText("22", 550, 220)
+            self.msg.writeText(str(manaPoint), 550, 205)
+            self.msg.writeText(str(staminarPoint), 550, 220)
 
             self.msg.writeText(str(self.str), 203, 275) # STR
             self.msg.writeText(str(self.vit), 203, 290) # VIT
@@ -264,22 +244,25 @@ class StartGame():
 
 
             if pygame.Rect((59,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE WARRIOR
-                self.screen.blit(image, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][68][0:4])
+                self.screen.blit(self.dialogText1, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][68][0:4])
+                return 33
                 
 
             if pygame.Rect((144,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MAGE
-                self.screen.blit(image, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][66][0:4])
+                self.screen.blit(self.dialogText1, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][66][0:4])
+                return 34
                 
             if pygame.Rect((229,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MASTER
-                self.screen.blit(image, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][64][0:4])
+                self.screen.blit(self.dialogText1, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][64][0:4])
+                return 35
                 
 
             if pygame.Rect((505,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # Cancel BTN
-                self.screen.blit(image, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][17][0:4])
+                self.screen.blit(self.dialogText1, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][17][0:4])
                 return 19
 
             if pygame.Rect((375,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE BTN
-                self.screen.blit(image, (375,448), self.totalSprites["DialogText.pak"]["frames"][1][25][0:4])
+                self.screen.blit(self.dialogText1, (375,448), self.totalSprites["DialogText.pak"]["frames"][1][25][0:4])
                 return 20
 
             # MOUSEHOVER OVER  STR
@@ -391,11 +374,9 @@ class StartGame():
 
         if self.startGameVar == 99:
             self.exitTrigger = True                             
-            data, mode, size = self.prepareSprite(exit)
-            image1 = pygame.image.fromstring(data, size, mode)
-            rect = image1.get_rect()
-            self.screen.blit(image1, rect)
-            self.screen.blit(image1, (255,122), self.totalSprites["New-Dialog.pak"]["frames"][2][1][0:4])
+            rect = exit.get_rect()
+            self.screen.blit(exit, rect)
+            self.screen.blit(exit, (255,122), self.totalSprites["New-Dialog.pak"]["frames"][2][1][0:4])
             
             
             
@@ -404,27 +385,17 @@ class StartGame():
 ########################################################## GAME STATES  ####################################################################
     def Login(self):
         logIn = self.totalSprites["LoginDialog.pak"]["sprites"][0]
-        data, mode, size = self.prepareSprite(logIn)
-        image1 = pygame.image.fromstring(data, size, mode)
-        rect = image1.get_rect()
-        self.screen.blit(image1, rect)
+        rect = logIn.get_rect()
+        self.screen.blit(logIn, rect)
 
     def cursor(self): #32 x 27
         cursor = self.totalSprites["interface.pak"]["sprites"][0]
-        data, mode, size = self.prepareSprite(cursor)
         surf = pygame.Surface((32, 27)) # you could also load an image 
-        image1 = pygame.image.fromstring(data, size, mode)
-        image1.set_colorkey((255,132,66))
+        cursor.set_colorkey((255,132,66))
         surf.set_colorkey((0,0,0))
-        surf.blit(image1,(0,0),(121, 6, 32, 27))
+        surf.blit(cursor,(0,0),(121, 6, 32, 27))
         color = pygame.cursors.Cursor((5, 5), surf)
         pygame.mouse.set_cursor(color)
-        
-    def prepareSprite(self, imagen):
-        data = imagen.tobytes()
-        mode = imagen.mode
-        size = imagen.size
-        return data, mode, size
 
     def MakeSprite(self, file):
         path = "Sprites/"

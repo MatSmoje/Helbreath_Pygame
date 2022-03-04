@@ -2,6 +2,7 @@ import os, struct, mmap
 import io
 from PIL import Image, ImageDraw
 from collections import namedtuple
+import pygame
 
 exists = lambda fn: os.path.exists(fn) and os.path.isfile(fn)
 
@@ -31,6 +32,13 @@ class HBPak(object):
     def __init__(self, filename):
         assert exists(filename)
         self.PakFileName = filename
+     
+    def prepareSprite(self, imagen):
+        data = imagen.tobytes()
+        mode = imagen.mode
+        size = imagen.size
+        image1 = pygame.image.fromstring(data, size, mode)
+        return image1
 
     def load(self):
         f  = open(self.PakFileName, "r+b")
@@ -77,7 +85,7 @@ class HBPak(object):
                 data = io.BytesIO(fs.read(size))
                 Spr.image = Image.open(data).convert("RGBA")
                 #self.sprites += [Spr.image]
-                spritesList[PakFileName]['sprites'][contSpr] = Spr.image
+                spritesList[PakFileName]['sprites'][contSpr] = self.prepareSprite(Spr.image)
                 spritesList[PakFileName]['frames'][contSpr] = frames
                 contSpr += 1
                 
@@ -94,8 +102,6 @@ class HBPak(object):
 
 
 
-#im1 = wyvern.save("asdasd.png")
-#print(type(wyvern))
 
     
 

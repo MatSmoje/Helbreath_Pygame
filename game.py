@@ -69,8 +69,8 @@ def main():
 
                 if mouseHoverDetect == 2:
                     e14.play()  
-                    print("newAccount Buttn pressed")
-                    login.startGameVar = 4
+                    print("newAccount Buttn pressed") ####################################
+                    login.startGameVar = 3
                 
                 if mouseHoverDetect == 3:
                     e14.play()  
@@ -173,31 +173,109 @@ def main():
                     login.startGameVar = 0
                 
                 if mouseHoverDetect == 19: # Cancel create new Character
+                    login.str = 10
+                    login.vit = 10
+                    login.dex = 10
+                    login.int = 10
+                    login.mag = 10
+                    login.chr = 10 
+                    login.specialStatPoints = 10 
                     login.startGameVar = 3
                     
                 if mouseHoverDetect == 20:
                     login.startGameVar = 5
                 
                 if mouseHoverDetect == 21:
-                    if login.specialStatPoints > 0:
+                    if login.specialStatPoints > 0 and login.str <= 13 and login.str >= 9:
                         login.str = login.str + 1
                         login.specialStatPoints = login.specialStatPoints - 1
 
                 if mouseHoverDetect == 22:
-                    login.str = login.str - 1
-                    login.specialStatPoints = login.specialStatPoints + 1
+                    if login.specialStatPoints <= 14 and login.str <= 14 and login.str >= 11:
+                        login.str = login.str - 1
+                        login.specialStatPoints = login.specialStatPoints + 1
                 
                 if mouseHoverDetect == 23:
-                    login.vit = login.vit + 1
+                    if login.specialStatPoints > 0 and login.vit <= 13 and login.vit >= 9:
+                        login.vit = login.vit + 1
+                        login.specialStatPoints = login.specialStatPoints - 1
                     
                 if mouseHoverDetect == 24:
-                    login.vit = login.vit - 1
+                    if login.specialStatPoints <= 14 and login.vit <= 14 and login.vit >= 11:
+                        login.vit = login.vit - 1
+                        login.specialStatPoints = login.specialStatPoints + 1
 
                 if mouseHoverDetect == 25:
-                    login.dex = login.dex + 1
+                    if login.specialStatPoints > 0 and login.dex <= 13 and login.dex >= 9:
+                        login.dex = login.dex + 1
+                        login.specialStatPoints = login.specialStatPoints - 1
+                    
                     
                 if mouseHoverDetect == 26:
-                    login.dex = login.dex - 1
+                    if login.specialStatPoints <= 14 and login.dex <= 14 and login.dex >= 11:
+                        login.dex = login.dex - 1
+                        login.specialStatPoints = login.specialStatPoints + 1
+
+
+                if mouseHoverDetect == 27:
+                    if login.specialStatPoints > 0 and login.int <= 13 and login.int >= 9:
+                        login.int = login.int + 1
+                        login.specialStatPoints = login.specialStatPoints - 1
+                     
+                if mouseHoverDetect == 28:
+                    if login.specialStatPoints <= 14 and login.int <= 14 and login.int >= 11:
+                        login.int = login.int - 1
+                        login.specialStatPoints = login.specialStatPoints + 1
+
+                # MAG
+                if mouseHoverDetect == 29:
+                    if login.specialStatPoints > 0 and login.mag <= 13 and login.mag >= 9:
+                        login.mag = login.mag + 1
+                        login.specialStatPoints = login.specialStatPoints - 1
+                     
+                if mouseHoverDetect == 30:
+                    if login.specialStatPoints <= 14 and login.mag <= 14 and login.mag >= 11:
+                        login.mag = login.mag - 1
+                        login.specialStatPoints = login.specialStatPoints + 1
+                #CHR
+                if mouseHoverDetect == 31:
+                    if login.specialStatPoints > 0 and login.chr <= 13 and login.chr >= 9:
+                        login.chr = login.chr + 1
+                        login.specialStatPoints = login.specialStatPoints - 1
+                     
+                if mouseHoverDetect == 32:
+                    if login.specialStatPoints <= 14 and login.chr <= 14 and login.chr >= 11:
+                        login.chr = login.chr - 1
+                        login.specialStatPoints = login.specialStatPoints + 1
+
+                if mouseHoverDetect == 33: # WARRIOR DEFAULT SET
+                    login.str = 14
+                    login.vit = 12
+                    login.dex = 14
+                    login.int = 10
+                    login.mag = 10
+                    login.chr = 10 
+                    login.specialStatPoints = 0
+
+                if mouseHoverDetect == 34: # MAGE DEFAULT SET
+                    login.str = 10
+                    login.vit = 12
+                    login.dex = 10
+                    login.int = 14
+                    login.mag = 14
+                    login.chr = 10 
+                    login.specialStatPoints = 0
+
+                if mouseHoverDetect == 35: # MASTER DEFAULT SET
+                    login.str = 14
+                    login.vit = 10
+                    login.dex = 12
+                    login.int = 10
+                    login.mag = 10
+                    login.chr = 14 
+                    login.specialStatPoints = 0
+                
+                    
 
 
 
