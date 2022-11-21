@@ -1,21 +1,18 @@
-
 {
-    "NAME":
-    {
+    "NAME": {
         "account-name": "moxymoron"
     },
-    "PASSWORD":
-    {
+    "PASSWORD": {
         "account-password": "test1234"
     },
-    "INFO":
-    {
+    "INFO": {
         "account-Email": "void@tiscali.fr",
         "account-Quiz": "aaaaaa_aaaaaaaaa",
-        "account-Answer": "aaaaaaa"  
+        "account-Answer": "aaaaaaa"
     },
-    "CHARACTERS":
-    {
-        "account-character": []
+    "CHARACTERS": {
+        "account-character": [
+            "Adrenalina"
+        ]
     }
 }

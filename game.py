@@ -2,7 +2,7 @@ import pygame
 import time
 from PIL import Image
 from pygame.locals import *
-import initGame, textInput, checkLogin
+import initGame, textInput, checkLogin, character
 
 
 
@@ -16,6 +16,7 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((640, 480)) #screen = pygame.display.set_mode((640, 480), pygame.FULLSCREEN)
     pygame.display.set_caption("Helbreath Cabito")
+    clock = pygame.time.Clock()
 
     e14 = pygame.mixer.Sound('SOUNDS/E14.WAV') # Click Sound
 
@@ -24,9 +25,12 @@ def main():
     accountBox = textInput.inputText(180, 158, screen)
     passwdBox = textInput.inputText(180, 180, screen)
     checkCredent = checkLogin.BbddLogin()
+    charName = textInput.inputText(200, 110, screen)
     textBoxs = [accountBox,passwdBox]
+    #otherMeth = character.Character()
     
     while running:
+        clock.tick(60)
         ev = pygame.event.get()
         pos = pygame.mouse.get_pos()
         #print(pos)
@@ -41,7 +45,10 @@ def main():
         
         if login.startGameVar == 2: 
             for box in textBoxs:
-                box.draw()
+                box.draw(login.accountState)
+        if login.startGameVar == 4:
+            charName.draw()
+            
         
         
         
@@ -54,6 +61,10 @@ def main():
             
         
         for event in ev:
+            if login.startGameVar == 4:
+                charName.write(event)
+                
+                
 
             if login.accountState:
                 accountBox.write(event)
@@ -70,6 +81,7 @@ def main():
                 if mouseHoverDetect == 2:
                     e14.play()  
                     print("newAccount Buttn pressed") ####################################
+                    login.user = 'anton'
                     login.startGameVar = 3
                 
                 if mouseHoverDetect == 3:
@@ -101,9 +113,9 @@ def main():
                 if mouseHoverDetect == 7:
                     e14.play()  
                     print("Connect")
-                    user =  accountBox.getData()
+                    login.user =  accountBox.getData()
                     passwd = passwdBox.getData()
-                    if checkCredent.checkCredentials(user,passwd):
+                    if checkCredent.checkCredentials(login.user,passwd):
                         login.startGameVar = 3  # Estado Logeado
                     accountBox.cleanLoginData()
                     passwdBox.cleanLoginData()
@@ -154,12 +166,14 @@ def main():
                     
                 if mouseHoverDetect == 15:
                     e14.play()
-                    print("Create Char")
+                    print("Create Char - Aqui ")
                     login.startGameVar = 4
                     
                 if mouseHoverDetect == 16:
+                    #character.Character(login.user, characterName, login.str, login.vit, login.dex, login.int, login.mag, login.chr)
+                    print("Delete Character")
                     e14.play()
-                    print("")
+
                     
                 if mouseHoverDetect == 17:
                     e14.play()
@@ -169,8 +183,8 @@ def main():
                     e14.play()
                     login.accountState = False
                     login.passwordState = False
-                    
                     login.startGameVar = 0
+                    e14.play()
                 
                 if mouseHoverDetect == 19: # Cancel create new Character
                     login.str = 10
@@ -181,72 +195,99 @@ def main():
                     login.chr = 10 
                     login.specialStatPoints = 10 
                     login.startGameVar = 3
+                    e14.play()
                     
-                if mouseHoverDetect == 20:
-                    login.startGameVar = 5
+                if mouseHoverDetect == 20:  # CREATE
+                    
+                    characterName =  charName.getData()
+                    if(login.specialStatPoints > 0):
+                        print("Por favor, asigne stats ")
+                    else:
+                        if(checkCredent.checkExistenceOfPj(characterName) == False):
+                            if(checkCredent.writeIntoAccFile(login.user, characterName)):
+                                checkCredent.addToPJList(characterName)
+                                newChar = character.Character(login.user, characterName, login.str, login.vit, login.dex, login.int, login.mag, login.chr)
+                                newChar.createNewChar()
+                                login.startGameVar = 3
+                        else:
+                            print("Error - Posible PJ Existente")
+                    login.resetValues()
+                    e14.play()
                 
                 if mouseHoverDetect == 21:
                     if login.specialStatPoints > 0 and login.str <= 13 and login.str >= 9:
                         login.str = login.str + 1
                         login.specialStatPoints = login.specialStatPoints - 1
+                        e14.play()
 
                 if mouseHoverDetect == 22:
                     if login.specialStatPoints <= 14 and login.str <= 14 and login.str >= 11:
                         login.str = login.str - 1
                         login.specialStatPoints = login.specialStatPoints + 1
+                        e14.play()
                 
                 if mouseHoverDetect == 23:
                     if login.specialStatPoints > 0 and login.vit <= 13 and login.vit >= 9:
                         login.vit = login.vit + 1
                         login.specialStatPoints = login.specialStatPoints - 1
+                        e14.play()
                     
                 if mouseHoverDetect == 24:
                     if login.specialStatPoints <= 14 and login.vit <= 14 and login.vit >= 11:
                         login.vit = login.vit - 1
                         login.specialStatPoints = login.specialStatPoints + 1
+                        e14.play()
 
                 if mouseHoverDetect == 25:
                     if login.specialStatPoints > 0 and login.dex <= 13 and login.dex >= 9:
                         login.dex = login.dex + 1
                         login.specialStatPoints = login.specialStatPoints - 1
+                        e14.play()
                     
                     
                 if mouseHoverDetect == 26:
                     if login.specialStatPoints <= 14 and login.dex <= 14 and login.dex >= 11:
                         login.dex = login.dex - 1
                         login.specialStatPoints = login.specialStatPoints + 1
+                        e14.play()
 
 
                 if mouseHoverDetect == 27:
                     if login.specialStatPoints > 0 and login.int <= 13 and login.int >= 9:
                         login.int = login.int + 1
                         login.specialStatPoints = login.specialStatPoints - 1
+                        e14.play()
                      
                 if mouseHoverDetect == 28:
                     if login.specialStatPoints <= 14 and login.int <= 14 and login.int >= 11:
                         login.int = login.int - 1
                         login.specialStatPoints = login.specialStatPoints + 1
+                        e14.play()
 
                 # MAG
                 if mouseHoverDetect == 29:
                     if login.specialStatPoints > 0 and login.mag <= 13 and login.mag >= 9:
                         login.mag = login.mag + 1
                         login.specialStatPoints = login.specialStatPoints - 1
+                        e14.play()
                      
                 if mouseHoverDetect == 30:
                     if login.specialStatPoints <= 14 and login.mag <= 14 and login.mag >= 11:
                         login.mag = login.mag - 1
                         login.specialStatPoints = login.specialStatPoints + 1
+                        e14.play()
                 #CHR
                 if mouseHoverDetect == 31:
                     if login.specialStatPoints > 0 and login.chr <= 13 and login.chr >= 9:
                         login.chr = login.chr + 1
                         login.specialStatPoints = login.specialStatPoints - 1
+                        e14.play()
                      
                 if mouseHoverDetect == 32:
                     if login.specialStatPoints <= 14 and login.chr <= 14 and login.chr >= 11:
                         login.chr = login.chr - 1
                         login.specialStatPoints = login.specialStatPoints + 1
+                        e14.play()
 
                 if mouseHoverDetect == 33: # WARRIOR DEFAULT SET
                     login.str = 14
@@ -256,6 +297,7 @@ def main():
                     login.mag = 10
                     login.chr = 10 
                     login.specialStatPoints = 0
+                    e14.play()
 
                 if mouseHoverDetect == 34: # MAGE DEFAULT SET
                     login.str = 10
@@ -265,6 +307,7 @@ def main():
                     login.mag = 14
                     login.chr = 10 
                     login.specialStatPoints = 0
+                    e14.play()
 
                 if mouseHoverDetect == 35: # MASTER DEFAULT SET
                     login.str = 14
@@ -274,6 +317,12 @@ def main():
                     login.mag = 10
                     login.chr = 14 
                     login.specialStatPoints = 0
+                    e14.play()
+
+                # if mouseHoverDetect == 36: # MASTER DEFAULT SET
+                #     charName.write(event)
+                #     charName.draw()
+                #     e14.play()
                 
                     
 

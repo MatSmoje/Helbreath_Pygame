@@ -1,21 +1,21 @@
-
 {
-    "NAME":
-    {
+    "NAME": {
         "account-name": "anton"
     },
-    "PASSWORD":
-    {
+    "PASSWORD": {
         "account-password": "xasdxasd"
     },
-    "INFO":
-    {
+    "INFO": {
         "account-Email": "void@tiscali.fr",
         "account-Quiz": "aaaaaa_aaaaaaaaa",
-        "account-Answer": "aaaaaaa"  
+        "account-Answer": "aaaaaaa"
     },
-    "CHARACTERS":
-    {
-        "account-character": ["Kanazawa[GM]"]
+    "CHARACTERS": {
+        "account-character": [
+            "Kanazawa[GM]",
+            "Que",
+            "Pasa",
+            "Larva"
+        ]
     }
 }

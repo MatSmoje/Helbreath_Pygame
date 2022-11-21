@@ -1,0 +1,44 @@
+{
+    "FILE-DATE": {
+        "file-saved-date": "2022-03-05"
+    },
+    "NAME-ACCOUNT": {
+        "character-name": "Pasa",
+        "account-name": "anton"
+    },
+    "STATUS": {
+        "character-profile": "",
+        "character-location": null,
+        "character-loc-map": "lost",
+        "character-loc-x": 150,
+        "character-loc-y": 151,
+        "character-HP": 1550,
+        "character-MP": 1525,
+        "character-SP": 1400,
+        "character-LEVEL": 1,
+        "character-RATING": 0,
+        "character-STR": 10,
+        "character-INT": 14,
+        "character-VIT": 12,
+        "character-DEX": 10,
+        "character-MAG": 14,
+        "character-CHARISMA": 10,
+        "character-LUCK": 1,
+        "character-EXP": 1,
+        "character-LU_Pool": 1,
+        "admin-user-level": 0,
+        "character-EK-Count": 0,
+        "character-PK-Count": 0,
+        "character-reward-gold": 0,
+        "character-downskillindex": 0,
+        "character-IDnum1": 26,
+        "character-IDnum2": 6,
+        "character-IDnum3": 1990,
+        "sex-status": 1,
+        "skin-status": 1,
+        "hairstyle-status": 1,
+        "haircolor-status": 1,
+        "underwear-status": 1,
+        "super-attack-left": 0
+    }
+}

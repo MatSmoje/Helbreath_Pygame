@@ -1,14 +1,17 @@
+from itertools import count
 import pygame
 import testHbPak
 from PIL import Image
 from pygame.locals import *
 import json
 import lan_eng, textInput
+import time
 
 
 
-class StartGame():
+class StartGame(pygame.sprite.Sprite):
     def __init__(self, screen):
+        pygame.sprite.Sprite.__init__(self)
         self.screen = screen
         self.totalSprites = { }
         self.MakeSprite("New-Dialog.pak")
@@ -20,6 +23,9 @@ class StartGame():
         self.msg = textInput.inputText(0 , 0 , self.screen)
         self.exitTrigger = False
         self.charSelection = 0
+        self.user = ''
+        self.index  = 0
+        self.warp_at_time = 0
         ### stats
         self.specialStatPoints = 10 
         self.str = 10 
@@ -32,10 +38,45 @@ class StartGame():
     def printSprites(self, totalSprites):
         print(json.dumps(totalSprites, sort_keys=True, indent=2, default=str))
 
+    def resetValues(self):
+        self.specialStatPoints = 10 
+        self.str = 10 
+        self.vit = 10 
+        self.dex = 10 
+        self.int = 10 
+        self.mag = 10 
+        self.chr = 10
+    
+    def update(self, spriteObj, n, posX, posY ):
+        NOW_MS = int(time.time() * 1000.0)
+        spriteLen = len(spriteObj["sprites"])
+        frameLen = len(spriteObj["frames"][n])
+        refreshTime = 1000 // frameLen
+        print(spriteLen)
+        print(frameLen)
+        
+        
+        
+        if self.index >= frameLen:
+            self.index = 0
+        self.screen.blit(spriteObj["sprites"][n], (posX,posY), spriteObj["frames"][n][self.index][0:4])
+
+
+        # if (self.warp_at_time > 0):
+        #     ms_since_warp_start = NOW_MS - self.warp_at_time
+        #     if ( ms_since_warp_start > 1000 ):
+        #         self.warp_at_time = 0
+        #         self.image = sprite  # return to original bitmap
+               
+        #     else:
+        #         image_number = ms_since_warp_start // 125 
+        #         self.image = sprite[image_number] # show that image
+        # return self.image
+
 ########################################################## GAME STATES  ####################################################################
 
     def startGame(self):
-        
+        warp_at_time = 0
         loading = self.totalSprites["New-Dialog.pak"]["sprites"][0]
         newAcc = self.totalSprites["New-Dialog.pak"]["sprites"][1]
         exit = self.totalSprites["New-Dialog.pak"]["sprites"][2]
@@ -125,11 +166,70 @@ class StartGame():
         if self.startGameVar == 3:  
             rect = gameDialog.get_rect()
             self.screen.blit(gameDialog, rect)
+            
+
+            ###LOGICA GET CHARS###
+            
+            
+
+
+            ###LOGICA GET CHARS###
 
             self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER36, 137, 452)
             charSelectionList = [(103,54),(212,54),(321,54),(430,54)]
             self.dialogText1.set_colorkey((0,123,255))
             self.screen.blit(self.dialogText1, charSelectionList[self.charSelection], self.totalSprites["DialogText.pak"]["frames"][1][62][0:4])
+
+            accFolder = 'S_Data/S_'+ self.user +'/A_' + self.user + '.json'
+            with open(accFolder, "r") as accFile:
+                accInfo = accFile.read()
+                accFile.close()
+
+            accInfo = json.loads(accInfo)
+            listOfCharacters = accInfo["CHARACTERS"]["account-character"]
+            characterCoord = [[115,177,145,193,145,208],[225,177,265,193,265,208],[335,177,365,193,365,208],[445,177,475,193,475,208]]
+            pjCoord = [142,252,362,472]
+            counter = 0 
+            for character in listOfCharacters:
+                charJSONFile = 'S_Data/S_'+ self.user +'/C_' + character + '.json'
+                with open(charJSONFile, "r") as jsonFile:
+                    char = jsonFile.read()
+                    jsonFile.close()
+                y = json.loads(char)
+                self.msg.writeText(y["NAME-ACCOUNT"]["character-name"], characterCoord[counter][0], characterCoord[counter][1])
+                self.msg.writeText(str(y["STATUS"]["character-LEVEL"]), characterCoord[counter][2], characterCoord[counter][3])
+                self.msg.writeText(str(y["STATUS"]["character-EXP"]), characterCoord[counter][4], characterCoord[counter][5])
+                #16 a 23
+                #self.update(self.totalSprites["Wm.pak"],16, 142, 195)#[0][0:4]))
+                image_number = 0
+                NOW_MS = int(time.time() * 1000.0) #21.000
+
+                if (self.warp_at_time == 0):
+                    self.warp_at_time = NOW_MS #20.000
+
+
+                ms_since_warp_start = NOW_MS - self.warp_at_time #1.000
+
+                if ( ms_since_warp_start > 125*7 ):
+                    self.warp_at_time = 0
+                else:
+                    image_number = ms_since_warp_start // 125
+                    print("image number" + str(image_number))
+                
+                self.totalSprites["Wm.pak"]["sprites"][16].set_colorkey((0,0,0))
+                self.totalSprites["Bm.pak"]["sprites"][16].set_colorkey((0,0,0))
+                self.totalSprites["Ym.pak"]["sprites"][16].set_colorkey((0,0,0))
+
+
+                if(y["STATUS"]["skin-status"] == 1):
+                    self.screen.blit(self.totalSprites["Wm.pak"]["sprites"][16], (pjCoord[counter],95), self.totalSprites["Wm.pak"]["frames"][16][image_number][0:4])
+                if(y["STATUS"]["skin-status"] == 2):
+                    self.screen.blit(self.totalSprites["Bm.pak"]["sprites"][16], (pjCoord[counter],95), self.totalSprites["Bm.pak"]["frames"][16][image_number][0:4])
+                if(y["STATUS"]["skin-status"] == 3):
+                    self.screen.blit(self.totalSprites["Ym.pak"]["sprites"][16], (pjCoord[counter],95), self.totalSprites["Ym.pak"]["frames"][16][image_number][0:4])
+                counter = counter + 1 
+
+            
             
 
             if pygame.Rect((106,57),(100,180)).collidepoint(pygame.mouse.get_pos()):   ### print("Character Box1")
@@ -176,13 +276,14 @@ class StartGame():
                 self.screen.blit(self.dialogText1, (365,408), self.totalSprites["DialogText.pak"]["frames"][1][60][0:4]) #check
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_SELECT_CHARACTER13, 105, 310)
                 return 18
+            
+            
 
         
 ######################## CREATE NEW CHARACTER
         if self.startGameVar == 4:
             gameDialog = self.totalSprites["GameDialog.pak"]["sprites"][9]
             
-            #item-equipM.pak
             
             rect = gameDialog.get_rect()
             self.screen.blit(gameDialog, rect)
@@ -242,20 +343,6 @@ class StartGame():
             self.msg.writeText(str(self.chr), 203, 353) # CHR
 
 
-
-            if pygame.Rect((59,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE WARRIOR
-                self.screen.blit(self.dialogText1, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][68][0:4])
-                return 33
-                
-
-            if pygame.Rect((144,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MAGE
-                self.screen.blit(self.dialogText1, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][66][0:4])
-                return 34
-                
-            if pygame.Rect((229,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MASTER
-                self.screen.blit(self.dialogText1, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][64][0:4])
-                return 35
-                
 
             if pygame.Rect((505,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # Cancel BTN
                 self.screen.blit(self.dialogText1, (505,448), self.totalSprites["DialogText.pak"]["frames"][1][17][0:4])
@@ -358,6 +445,23 @@ class StartGame():
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER10, 376, 367)
                 self.msg.writeText(lan_eng.UPDATE_SCREEN_ON_CREATE_NEW_CHARACTER11, 376, 382)
                 return 32
+
+            if pygame.Rect((59,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE WARRIOR
+                self.screen.blit(self.dialogText1, (59,448), self.totalSprites["DialogText.pak"]["frames"][1][68][0:4])
+                return 33
+                
+
+            if pygame.Rect((144,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MAGE
+                self.screen.blit(self.dialogText1, (144,448), self.totalSprites["DialogText.pak"]["frames"][1][66][0:4])
+                return 34
+                
+            if pygame.Rect((229,448),(75,19)).collidepoint(pygame.mouse.get_pos()):   # CREATE MASTER
+                self.screen.blit(self.dialogText1, (229,448), self.totalSprites["DialogText.pak"]["frames"][1][64][0:4])
+                return 35
+            
+            if pygame.Rect((195,110),(105,15)).collidepoint(pygame.mouse.get_pos()): # Write Char Name
+                print("WriteChar")
+                return 36
            
             
 
@@ -431,6 +535,10 @@ class StartGame():
             self.itemEquipM12 = self.totalSprites["item-equipM.pak"]["sprites"][12]
             self.itemEquipM13 = self.totalSprites["item-equipM.pak"]["sprites"][13]
             self.itemEquipM14 = self.totalSprites["item-equipM.pak"]["sprites"][14]
+            self.MakeSprite('Wm.pak')
+            self.MakeSprite('Bm.pak')
+            self.MakeSprite('Ym.pak')
+            #self.itemEquipM0 = self.totalSprites["Wm.pak"]["sprites"][0]
 
             self.m_cLoading = 8
         elif self.m_cLoading == 8:

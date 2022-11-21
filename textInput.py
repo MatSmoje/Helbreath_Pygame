@@ -54,22 +54,23 @@ class inputText():
     
 
     
-    def draw(self):
+    def draw(self, state = True):
         self.render()
         self.cursor = pygame.Rect((self.x,self.y,7, 1))
         self.screen.blit(self.txt_surfaceBg, (self.x+1, self.y+1))
         self.screen.blit(self.txt_surface, (self.x, self.y))
         ## BLINK CURSOR
-        if time.time() % 1 > 0.5:
+        if state == True:
+            if time.time() % 1 > 0.5:
 
-            # bounding rectangle of the text
-            text_rect = self.txt_surface.get_rect(topleft = (self.x,self.y+8))
+                # bounding rectangle of the text
+                text_rect = self.txt_surface.get_rect(topleft = (self.x,self.y+8))
 
-            # set cursor position
-            self.cursor.midleft = text_rect.midright
+                # set cursor position
+                self.cursor.midleft = text_rect.midright
 
-            pygame.draw.rect(self.screen, (0,0,0), self.cursor)
-            pygame.draw.rect(self.screen, (255,255,255), self.cursor)
+                pygame.draw.rect(self.screen, (0,0,0), self.cursor)
+                pygame.draw.rect(self.screen, (255,255,255), self.cursor)
 
 
     def getData(self):
